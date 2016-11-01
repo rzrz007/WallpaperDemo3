@@ -1,16 +1,15 @@
 package com.example.zren.wallpaperdemo3.activity;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 
 import com.example.zren.wallpaperdemo3.R;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
                 SystemClock.sleep(2000);
                 Intent intent = new Intent(MainActivity.this, IndexActivity.class);
                 startActivity(intent);
+                finish();
             }
         }).start();
 
 
     }
+
 
 }
