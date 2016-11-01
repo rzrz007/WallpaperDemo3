@@ -19,6 +19,10 @@ public class Search_Fragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static Fragment getInstance() {
+        Search_Fragment search_fragment = new Search_Fragment();
+        return search_fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

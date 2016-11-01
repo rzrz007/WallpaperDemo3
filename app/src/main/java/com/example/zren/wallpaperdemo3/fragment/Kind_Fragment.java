@@ -16,6 +16,10 @@ public class Kind_Fragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static Fragment getInstance() {
+        Kind_Fragment kind_fragment = new Kind_Fragment();
+        return kind_fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

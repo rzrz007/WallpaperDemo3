@@ -11,9 +11,13 @@ import com.example.zren.wallpaperdemo3.R;
 
 public class Recommend_Fragment extends Fragment {
 
-
     public Recommend_Fragment() {
         // Required empty public constructor
+    }
+
+    public static Fragment getInstance() {
+        Recommend_Fragment recommend_fragment = new Recommend_Fragment();
+        return recommend_fragment;
     }
 
 
