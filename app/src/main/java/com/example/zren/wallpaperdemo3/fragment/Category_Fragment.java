@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.domain.Category_Images;
 import com.example.zren.wallpaperdemo3.utils.NetUtils;
-import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.util.ArrayList;
