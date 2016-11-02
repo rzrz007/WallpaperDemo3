@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.google.gson.Gson;
+
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -78,5 +81,24 @@ public class NetUtils {
         }
         return false;
     }
+
+    public static String inputStreamToString(InputStream inputStream) throws Exception{
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        byte[] buffer=new byte[1024];
+        int len=0;
+        while((len=inputStream.read(buffer))!=-1){
+            byteArrayOutputStream.write(buffer, 0, len);
+        }
+        return byteArrayOutputStream.toString();
+    }
+
+    public static <T> T getT(String json,Class<T> cls){
+        //1.实例化Gson对象
+        Gson gson=new Gson();
+        //2.将指定的json字符串还原成T类型的对象
+        T t=gson.fromJson(json, cls);
+        return t;
+    }
+
 
 }

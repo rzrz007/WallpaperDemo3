@@ -10,7 +10,7 @@ android:oneshot="false":是否播放一次，true:表示播放一次结束；fal
     <item android:drawable="@drawable/loading3" android:duration="200" />
     <item android:drawable="@drawable/loading4" android:duration="200" />
     <item android:drawable="@drawable/loading5" android:duration="200" />
-    <item android:drawable="@drawable/loading6" android:duration="500" />
+    <item android:drawable="@drawable/loading6" android:duration="200" />
     <item android:drawable="@drawable/loading7" android:duration="200" />
     <item android:drawable="@drawable/loading8" android:duration="200" />
 </animation-list>
