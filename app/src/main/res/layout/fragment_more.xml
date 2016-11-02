@@ -1,13 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
     tools:context="com.example.zren.wallpaperdemo3.fragment.More_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="更多" />
+        android:layout_height="30dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:text="更多"
+        android:textSize="20sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/holo_blue_dark"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/button_myCollection"
+        style="@style/Fragment_more_Button_style"
+        android:text="我的收藏" />
+
+    <Button
+        android:id="@+id/button_myDownload"
+        style="@style/Fragment_more_Button_style"
+        android:text="我的下载" />
+
+    <Button
+        android:id="@+id/button_shareToFriend"
+        style="@style/Fragment_more_Button_style"
+        android:text="推荐给好友" />
+
+    <Button
+        android:id="@+id/button_giveSomePraise"
+        style="@style/Fragment_more_Button_style"
+        android:text="给个好评" />
+
+    <Button
+        android:id="@+id/button_setting"
+        style="@style/Fragment_more_Button_style"
+        android:text="设置" />
+
+</LinearLayout>
