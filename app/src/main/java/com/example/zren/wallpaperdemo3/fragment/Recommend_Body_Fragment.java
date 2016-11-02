@@ -4,17 +4,19 @@ package com.example.zren.wallpaperdemo3.fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
-import com.example.zren.wallpaperdemo3.activity.MainActivity;
+
 import com.example.zren.wallpaperdemo3.common.Images;
 import com.squareup.picasso.Picasso;
 
@@ -40,7 +42,8 @@ public class Recommend_Body_Fragment extends Fragment {
         this.recyclerView= (RecyclerView) view.findViewById(R.id.recyclerView);
 
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
-        this.recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3);
+        this.recyclerView.setLayoutManager(gridLayoutManager);
         this.adapter=new MyAdapter(Images.imageUrls);
         //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
         this.recyclerView.setAdapter(this.adapter);
@@ -99,7 +102,15 @@ public class Recommend_Body_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            Picasso.with(getContext()).load(imageUrls[position]).into(holder.imageView_img);
+            WindowManager wm = getActivity().getWindowManager();
+
+            int width = wm.getDefaultDisplay().getWidth();
+            int height = wm.getDefaultDisplay().getHeight();
+
+            int img_width=width/3;
+            int img_height=img_width*2;
+
+            Picasso.with(getContext()).load(imageUrls[position]).resize(img_width,img_height-30).into(holder.imageView_img);
         }
 
 
