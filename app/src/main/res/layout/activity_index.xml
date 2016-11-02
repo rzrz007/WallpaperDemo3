@@ -2,126 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fff">
+    android:background="#fff"
+    android:orientation="vertical">
 
-        <!-- ========放置 碎片 的线性布局======== -->
+    <!-- ========放置 碎片 的线性布局======== -->
+    <LinearLayout
+        android:id="@+id/linearLayout_for_fragment"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="10"
+        android:orientation="vertical" />
+
+    <!-- ============== 底部导航栏 ============== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/textColor">
+
+        <!-- ========导航栏中 推荐 部分======= -->
         <LinearLayout
-            android:id="@+id/linearLayout_for_fragment"
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="9"
-            android:orientation="vertical" />
+            android:id="@+id/layout_recommand"
+            style="@style/IndexActivity_Four_Layout_Style">
 
-        <!-- ============== 底部导航栏 ============== -->
+            <ImageView
+                android:id="@+id/imageView_recommand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bottom_recommand_selected" />
+
+            <TextView
+                android:id="@+id/textView_recommand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="推荐"
+                android:textColor="@color/textColor" />
+        </LinearLayout>
+
+        <!-- ========导航栏中 分类 部分======== -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:background="@color/textColor">
+            android:id="@+id/layout_category"
+            style="@style/IndexActivity_Four_Layout_Style">
 
-            <!-- ========导航栏中 推荐 部分======= -->
-            <LinearLayout
-                android:id="@+id/layout_recommand"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center"
-                android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imageView_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bottom_category" />
 
-                <ImageView
-                    android:id="@+id/imageView_recommand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/bottom_recommand_selected" />
+            <TextView
+                android:id="@+id/textView_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分类" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView_recommand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="推荐"
-                    android:textColor="@color/textColor" />
-            </LinearLayout>
+        <!-- ========导航栏中 搜索 部分======== -->
+        <LinearLayout
+            android:id="@+id/layout_search"
+            style="@style/IndexActivity_Four_Layout_Style">
 
-            <!-- ========导航栏中 分类 部分======== -->
-            <LinearLayout
-                android:id="@+id/layout_category"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center"
-                android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imageView_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bottom_search" />
 
-                <ImageView
-                    android:id="@+id/imageView_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/bottom_category" />
+            <TextView
+                android:id="@+id/textView_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="分类" />
-            </LinearLayout>
+        <!-- ========导航栏中 更多 部分======== -->
+        <LinearLayout
+            android:id="@+id/layout_more"
+            style="@style/IndexActivity_Four_Layout_Style">
 
-            <!-- ========导航栏中 搜索 部分======== -->
-            <LinearLayout
-                android:id="@+id/layout_search"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center"
-                android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imageView_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bottom_more" />
 
-                <ImageView
-                    android:id="@+id/imageView_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/bottom_search" />
-
-                <TextView
-                    android:id="@+id/textView_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="搜索" />
-            </LinearLayout>
-
-            <!-- ========导航栏中 更多 部分======== -->
-            <LinearLayout
-                android:id="@+id/layout_more"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/bottom_more" />
-
-                <TextView
-                    android:id="@+id/textView_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="更多" />
-            </LinearLayout>
-
-
+            <TextView
+                android:id="@+id/textView_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多" />
         </LinearLayout>
 
 
     </LinearLayout>
+
+
+</LinearLayout>
 
 
