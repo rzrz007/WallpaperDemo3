@@ -1,11 +1,13 @@
 package com.example.zren.wallpaperdemo3.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -80,8 +82,36 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
         data.add(recommend_body_fragment2);
         data.add(recommend_body_fragment3);
         viewPager_Body.setAdapter(new MyPagerAdapter(getFragmentManager()));
+        viewPager_Body.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        ClickNew();
+                        break;
+                    case 1:
+                        ClickHot();
+                        break;
+                    case 2:
+                        ClickRandom();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         return view;
     }
+
+
 
     private final class MyPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -145,61 +175,87 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
         switch (view.getId()){
             case R.id.textView_new:
                 System.out.println("case R.id.textView_new:");
-                TranslateAnimation translateAnimation_new=new TranslateAnimation(
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        x,//平移动画开始前在X轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        0,//平移动画结束后在X轴方向的结束偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
-                        y,//平移动画开始前在Y轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        0//平移动画结束后在Y轴方向的结束偏移量
-                );
-                translateAnimation_new.setDuration(500);
-                translateAnimation_new.setFillAfter(true);
-                //开始动画
-                this.imageView_line.startAnimation(translateAnimation_new);
-                x=0;
-                y=0;
+//               ClickNew();
+
+                viewPager_Body.setCurrentItem(0,true);
                 break;
 
             case R.id.textView_hot:
                 System.out.println("case R.id.textView_hot:");
-                TranslateAnimation translateAnimation_hot=new TranslateAnimation(
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        x,//平移动画开始前在X轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        width/3,//平移动画结束后在X轴方向的结束偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
-                        y,//平移动画开始前在Y轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        0//平移动画结束后在Y轴方向的结束偏移量
-                );
-                translateAnimation_hot.setDuration(500);
-                translateAnimation_hot.setFillAfter(true);
-                //开始动画
-                this.imageView_line.startAnimation(translateAnimation_hot);
-                x=width/3;
+                //ClickHot();
+                viewPager_Body.setCurrentItem(1,true);
                 break;
             case R.id.textView_random:
                 System.out.println("case R.id.textView_random:");
-                TranslateAnimation translateAnimation_random=new TranslateAnimation(
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        x,//平移动画开始前在X轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        (width/3)*2,//平移动画结束后在X轴方向的结束偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
-                        y,//平移动画开始前在Y轴方向的起始偏移量
-                        Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
-                        0//平移动画结束后在Y轴方向的结束偏移量
-                );
-                translateAnimation_random.setDuration(500);
-                translateAnimation_random.setFillAfter(true);
-                //开始动画
-                this.imageView_line.startAnimation(translateAnimation_random);
-                x=(width/3)*2;
+//                ClickRandom();
+                viewPager_Body.setCurrentItem(2,true);
+
                 break;
 
         }
+    }
+
+    private void ClickRandom() {
+        textView_new.setTextColor(Color.BLACK);
+        textView_hot.setTextColor(Color.BLACK);
+        textView_random.setTextColor(Color.RED);
+        TranslateAnimation translateAnimation_random=new TranslateAnimation(
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                x,//平移动画开始前在X轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                (width/3)*2,//平移动画结束后在X轴方向的结束偏移量
+                Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
+                y,//平移动画开始前在Y轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                0//平移动画结束后在Y轴方向的结束偏移量
+        );
+        translateAnimation_random.setDuration(500);
+        translateAnimation_random.setFillAfter(true);
+        //开始动画
+        this.imageView_line.startAnimation(translateAnimation_random);
+        x=(width/3)*2;
+    }
+
+    private void ClickHot() {
+        textView_new.setTextColor(Color.BLACK);
+        textView_hot.setTextColor(Color.RED);
+        textView_random.setTextColor(Color.BLACK);
+        TranslateAnimation translateAnimation_hot=new TranslateAnimation(
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                x,//平移动画开始前在X轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                width/3,//平移动画结束后在X轴方向的结束偏移量
+                Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
+                y,//平移动画开始前在Y轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                0//平移动画结束后在Y轴方向的结束偏移量
+        );
+        translateAnimation_hot.setDuration(500);
+        translateAnimation_hot.setFillAfter(true);
+        //开始动画
+        this.imageView_line.startAnimation(translateAnimation_hot);
+        x=width/3;
+    }
+
+    private void ClickNew() {
+        textView_new.setTextColor(Color.RED);
+        textView_hot.setTextColor(Color.BLACK);
+        textView_random.setTextColor(Color.BLACK);
+        TranslateAnimation translateAnimation_new=new TranslateAnimation(
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                x,//平移动画开始前在X轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                0,//平移动画结束后在X轴方向的结束偏移量
+                Animation.ABSOLUTE,//指定平移参考点在Y轴方向为绝对距离值
+                y,//平移动画开始前在Y轴方向的起始偏移量
+                Animation.ABSOLUTE,//指定平移参考点在X轴方向为绝对距离值
+                0//平移动画结束后在Y轴方向的结束偏移量
+        );
+        translateAnimation_new.setDuration(500);
+        translateAnimation_new.setFillAfter(true);
+        //开始动画
+        this.imageView_line.startAnimation(translateAnimation_new);
+        x=0;
+        y=0;
     }
 }
