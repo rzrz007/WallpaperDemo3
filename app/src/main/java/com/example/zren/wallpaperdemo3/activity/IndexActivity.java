@@ -2,33 +2,30 @@ package com.example.zren.wallpaperdemo3.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.fragment.Category_Fragment;
+import com.example.zren.wallpaperdemo3.fragment.More_Fragment;
 import com.example.zren.wallpaperdemo3.fragment.Recommend_Fragment;
 import com.example.zren.wallpaperdemo3.fragment.Search_Fragment;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
     private long preTime;
 
-    private LinearLayout layout_recommand, layout_category, layout_search;
+    private LinearLayout layout_recommand, layout_category, layout_search, layout_more;
 
-    private ImageView imageView_recommand,imageView_category,imageView_search;
+    private ImageView imageView_recommand, imageView_category, imageView_search, image_more;
 
-    private TextView textView_recommand,textView_category,textView_search;
+    private TextView textView_recommand, textView_category, textView_search, textView_more;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +42,22 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         layout_recommand = (LinearLayout) this.findViewById(R.id.layout_recommand);
         layout_category = (LinearLayout) this.findViewById(R.id.layout_category);
         layout_search = (LinearLayout) this.findViewById(R.id.layout_search);
+        layout_more = (LinearLayout) this.findViewById(R.id.layout_more);
 
         layout_recommand.setOnClickListener(this);
         layout_category.setOnClickListener(this);
         layout_search.setOnClickListener(this);
+        layout_more.setOnClickListener(this);
 
         imageView_recommand = (ImageView) this.findViewById(R.id.imageView_recommand);
         imageView_category = (ImageView) this.findViewById(R.id.imageView_category);
         imageView_search = (ImageView) this.findViewById(R.id.imageView_search);
+        image_more = (ImageView) this.findViewById(R.id.imageView_more);
 
         textView_recommand = (TextView) this.findViewById(R.id.textView_recommand);
         textView_category = (TextView) this.findViewById(R.id.textView_category);
         textView_search = (TextView) this.findViewById(R.id.textView_search);
-
+        textView_more = (TextView) this.findViewById(R.id.textView_more);
 
         //默认显示第一个碎片：“推荐”部分
         showFirstFragment();
@@ -73,6 +73,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 textView_category.setTextColor(Color.GRAY);
                 imageView_search.setImageResource(R.mipmap.bottom_search);
                 textView_search.setTextColor(Color.GRAY);
+                image_more.setImageResource(R.mipmap.bottom_more);
+                textView_more.setTextColor(Color.GRAY);
                 showFirstFragment();
                 break;
             case R.id.layout_category:
@@ -82,6 +84,8 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 textView_category.setTextColor(getResources().getColor(R.color.textColor));
                 imageView_search.setImageResource(R.mipmap.bottom_search);
                 textView_search.setTextColor(Color.GRAY);
+                image_more.setImageResource(R.mipmap.bottom_more);
+                textView_more.setTextColor(Color.GRAY);
                 showSecondFragment();
                 break;
             case R.id.layout_search:
@@ -91,7 +95,20 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 textView_category.setTextColor(Color.GRAY);
                 imageView_search.setImageResource(R.mipmap.bottom_search_selected);
                 textView_search.setTextColor(getResources().getColor(R.color.textColor));
+                image_more.setImageResource(R.mipmap.bottom_more);
+                textView_more.setTextColor(Color.GRAY);
                 showThirdFragment();
+                break;
+            case R.id.layout_more:
+                imageView_recommand.setImageResource(R.mipmap.bottom_recommand);
+                textView_recommand.setTextColor(Color.GRAY);
+                imageView_category.setImageResource(R.mipmap.bottom_category);
+                textView_category.setTextColor(Color.GRAY);
+                imageView_search.setImageResource(R.mipmap.bottom_search);
+                textView_search.setTextColor(Color.GRAY);
+                image_more.setImageResource(R.mipmap.bottom_more_selected);
+                textView_more.setTextColor(getResources().getColor(R.color.textColor));
+                showFourthFragment();
                 break;
         }
     }
@@ -115,6 +132,12 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     private void showThirdFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.linearLayout_for_fragment, Search_Fragment.getInstance());
+        fragmentTransaction.commit();
+    }
+
+    private void showFourthFragment() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.linearLayout_for_fragment, More_Fragment.getInstance());
         fragmentTransaction.commit();
     }
 
