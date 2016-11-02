@@ -7,6 +7,7 @@ import com.example.zren.wallpaperdemo3.domain.SearchTag;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,8 +94,8 @@ public class SearchTagDao {
      */
     public void deleteAll(){
         try {
-            searchTagDaoOperate.queryRaw("delete from RowImage");
-            searchTagDaoOperate.queryRaw("update sqlite_sequence SET seq = 0 where name ='RowImage'");
+            searchTagDaoOperate.queryRaw("delete from SearchTag");
+            searchTagDaoOperate.queryRaw("update sqlite_sequence SET seq = 0 where name ='SearchTag'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
