@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import com.example.zren.wallpaperdemo3.receiver.JudgeNetIsConnectedReceiver;
 
