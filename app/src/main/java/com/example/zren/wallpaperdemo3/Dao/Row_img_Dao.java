@@ -46,7 +46,7 @@ public class Row_img_Dao {
      * 删除一行数据
      * @param imgID
      */
-    public void delete(int imgID){
+    public void delete(String imgID){
         try {
             DeleteBuilder deleteBuilder=rowImgDaoOperate.deleteBuilder();
             deleteBuilder.where().eq("imgID",imgID);
@@ -61,7 +61,7 @@ public class Row_img_Dao {
      * @param imgID
      * @return
      */
-    public Row_Img query(int imgID){
+    public Row_Img query(String imgID){
         Row_Img row_Img= null;
         List<Row_Img> row_Imgs=new ArrayList<>();
         try {

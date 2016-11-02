@@ -3,7 +3,7 @@ package com.example.zren.wallpaperdemo3.dao;
 import android.content.Context;
 
 import com.example.zren.wallpaperdemo3.db.DBHelper;
-import com.example.zren.wallpaperdemo3.domain.Download_Img;
+import com.example.zren.wallpaperdemo3.domain.Topic;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -13,18 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ysy on 2016/11/1.
+ * Created by ysy on 2016/11/2.
  */
-public class MyDownloadDao {
+public class TopicDao {
+
     private Context context;
-    private Dao<Download_Img, Integer> myDownloadDaoOperate;
+    private Dao<Topic, Integer> topicDaoOperate;
     private DBHelper dbHelper;
 
-    public MyDownloadDao(Context context){
+    public TopicDao(Context context){
         this.context=context;
         dbHelper=DBHelper.getHelper(context);
         try {
-            myDownloadDaoOperate=dbHelper.getDao(Download_Img.class);
+            topicDaoOperate=dbHelper.getDao(Topic.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,11 +33,11 @@ public class MyDownloadDao {
 
     /**
      * 添加一行数据
-     * @param download_img
+     * @param topic
      */
-    public void add(Download_Img download_img){
+    public void add(Topic topic){
         try {
-            myDownloadDaoOperate.create(download_img);
+            topicDaoOperate.create(topic);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,12 +45,12 @@ public class MyDownloadDao {
 
     /**
      * 删除一行数据
-     * @param imgID
+     * @param topicID
      */
-    public void delete(String imgID){
+    public void delete(String topicID){
         try {
-            DeleteBuilder deleteBuilder=myDownloadDaoOperate.deleteBuilder();
-            deleteBuilder.where().eq("imgID",imgID);
+            DeleteBuilder deleteBuilder=topicDaoOperate.deleteBuilder();
+            deleteBuilder.where().eq("topicID",topicID);
             deleteBuilder.delete();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,18 +58,18 @@ public class MyDownloadDao {
     }
 
     /**
-     * 按 imgID 查询
-     * @param imgID
+     * 按 topicID 查询
+     * @param topicID
      * @return
      */
-    public Download_Img query(String imgID){
-        Download_Img download_img= null;
-        List<Download_Img> download_imgs=new ArrayList<>();
+    public Topic query(String topicID){
+        Topic topic= null;
+        List<Topic> topics=new ArrayList<>();
         try {
-            QueryBuilder builder=myDownloadDaoOperate.queryBuilder();
-            download_imgs=builder.where().eq("imgID",imgID).query();
-            download_img=download_imgs.get(0);
-            return download_img;
+            QueryBuilder builder=topicDaoOperate.queryBuilder();
+            topics=builder.where().eq("topicID",topicID).query();
+            topic=topics.get(0);
+            return topic;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,8 +81,8 @@ public class MyDownloadDao {
      */
     public List queryAll(){
         try {
-            List<Download_Img> download_imgs=myDownloadDaoOperate.queryForAll();
-            return download_imgs;
+            List<Topic> topics=topicDaoOperate.queryForAll();
+            return topics;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,8 +94,8 @@ public class MyDownloadDao {
      */
     public void deleteAll(){
         try {
-            myDownloadDaoOperate.queryRaw("delete from MyDownload");
-            myDownloadDaoOperate.queryRaw("update sqlite_sequence SET seq = 0 where name ='MyDownload'");
+            topicDaoOperate.queryRaw("delete from Topic");
+            topicDaoOperate.queryRaw("update sqlite_sequence SET seq = 0 where name ='Topic'");
         } catch (SQLException e) {
             e.printStackTrace();
         }
