@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Fragment_more_Button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:background">@drawable/button_click_style</item>
+        <item name="android:textColor">@drawable/text_click_style</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="IndexActivity_Four_Layout_Style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">#fff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
 </resources>
