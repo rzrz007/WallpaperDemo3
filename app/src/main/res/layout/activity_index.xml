@@ -4,79 +4,113 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linearLayout_for_fragment"
-            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
-            android:layout_weight="1" />
+            android:layout_weight="7"
+            android:orientation="vertical" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup_IndexActivity"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#a0c7fa"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            android:background="@color/textColor">
 
-            <RadioButton
-                android:id="@+id/rb_01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="1dp"
+            <LinearLayout
+                android:id="@+id/layout_recommand"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:background="#fff"
-                android:button="@null"
                 android:gravity="center"
-                android:text="推荐" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/rb_02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="1dp"
+                <ImageView
+                    android:id="@+id/imageView_recommand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/bottom_recommand_selected" />
+
+                <TextView
+                    android:id="@+id/textView_recommand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="推荐"
+                    android:textColor="@color/textColor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_category"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:background="#fff"
-                android:button="@null"
                 android:gravity="center"
-                android:text="分类" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/rb_03"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
+                <ImageView
+                    android:id="@+id/imageView_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/bottom_category" />
+
+                <TextView
+                    android:id="@+id/textView_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分类" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:background="#fff"
-                android:button="@null"
                 android:gravity="center"
-                android:text="搜索" />
-        </RadioGroup>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/bottom_search" />
+
+                <TextView
+                    android:id="@+id/textView_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搜索" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:orientation="vertical"
-        android:background="#fff">
+        android:background="#fff"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="更多" />
+
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
