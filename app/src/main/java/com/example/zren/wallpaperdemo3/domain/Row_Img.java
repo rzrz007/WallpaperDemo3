@@ -9,25 +9,46 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "RowImage")
 public class Row_Img {
 
+    /**
+     * 主键
+     */
     @DatabaseField(generatedId = true)
     private int id;
 
+    /**
+     * 图片ID
+     */
     @DatabaseField
-    private int imgID;
+    private String imgID;
 
+    /**
+     * 图片链接
+     */
     @DatabaseField
     private String imgUrl;
 
+    /**
+     * 缩略图链接
+     */
     @DatabaseField
     private String thumbnailUrl;
 
+    /**
+     * 类型
+     */
     @DatabaseField
     private String type;
 
+    /**
+     * 大图ID
+     */
     @DatabaseField
     private String bigID;
 
-    public Row_Img(String bigID, int imgID, String imgUrl, String thumbnailUrl, String type) {
+    public Row_Img() {
+    }
+
+    public Row_Img(String bigID, String imgID, String imgUrl, String thumbnailUrl, String type) {
         this.bigID = bigID;
         this.imgID = imgID;
         this.imgUrl = imgUrl;
@@ -35,7 +56,7 @@ public class Row_Img {
         this.type = type;
     }
 
-    public Row_Img(String bigID, int id, int imgID, String imgUrl, String thumbnailUrl, String type) {
+    public Row_Img(String bigID, int id, String imgID, String imgUrl, String thumbnailUrl, String type) {
         this.bigID = bigID;
         this.id = id;
         this.imgID = imgID;
@@ -60,11 +81,11 @@ public class Row_Img {
         this.id = id;
     }
 
-    public int getImgID() {
+    public String getImgID() {
         return imgID;
     }
 
-    public void setImgID(int imgID) {
+    public void setImgID(String imgID) {
         this.imgID = imgID;
     }
 
@@ -97,13 +118,10 @@ public class Row_Img {
         return "Row_Img{" +
                 "bigID='" + bigID + '\'' +
                 ", id=" + id +
-                ", imgID=" + imgID +
+                ", imgID='" + imgID + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 ", type='" + type + '\'' +
                 '}';
-    }
-
-    public Row_Img() {
     }
 }

@@ -47,7 +47,7 @@ public class MyCollectionDao {
      * 删除一行数据
      * @param imgID
      */
-    public void delete(int imgID){
+    public void delete(String imgID){
         try {
             DeleteBuilder deleteBuilder=myCollectionDaoOperate.deleteBuilder();
             deleteBuilder.where().eq("imgID",imgID);
@@ -62,7 +62,7 @@ public class MyCollectionDao {
      * @param imgID
      * @return
      */
-    public Collection_Img query(int imgID){
+    public Collection_Img query(String imgID){
         Collection_Img collection_img= null;
         List<Collection_Img> collection_imgs=new ArrayList<>();
         try {
