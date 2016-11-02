@@ -10,13 +10,16 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "MyCollection")
 public class Collection_Img {
 
+    /**
+     * 主键
+     */
     @DatabaseField(generatedId = true)
     private int id;
     /**
      * 图片ID
      */
     @DatabaseField(unique = true)
-    private int imgID;
+    private String imgID;
 
     /**
      * 小图链接
@@ -33,13 +36,13 @@ public class Collection_Img {
     public Collection_Img() {
     }
 
-    public Collection_Img(String bigImgUrl, int imgID, String middleImgUrl) {
+    public Collection_Img(String bigImgUrl, String imgID, String middleImgUrl) {
         this.bigImgUrl = bigImgUrl;
         this.imgID = imgID;
         this.middleImgUrl = middleImgUrl;
     }
 
-    public Collection_Img(String bigImgUrl, int id, int imgID, String middleImgUrl) {
+    public Collection_Img(String bigImgUrl, int id, String imgID, String middleImgUrl) {
         this.bigImgUrl = bigImgUrl;
         this.id = id;
         this.imgID = imgID;
@@ -62,11 +65,11 @@ public class Collection_Img {
         this.id = id;
     }
 
-    public int getImgID() {
+    public String getImgID() {
         return imgID;
     }
 
-    public void setImgID(int imgID) {
+    public void setImgID(String imgID) {
         this.imgID = imgID;
     }
 
@@ -83,7 +86,7 @@ public class Collection_Img {
         return "Collection_Img{" +
                 "bigImgUrl='" + bigImgUrl + '\'' +
                 ", id=" + id +
-                ", imgID=" + imgID +
+                ", imgID='" + imgID + '\'' +
                 ", middleImgUrl='" + middleImgUrl + '\'' +
                 '}';
     }

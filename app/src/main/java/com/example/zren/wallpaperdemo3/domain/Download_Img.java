@@ -9,6 +9,9 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "MyDownload")
 public class Download_Img {
 
+    /**
+     * 主键
+     */
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -16,7 +19,7 @@ public class Download_Img {
      * 图片id
      */
     @DatabaseField(unique = true)
-    private int imgID;
+    private String imgID;
 
     /**
      * 本地路径
@@ -24,15 +27,27 @@ public class Download_Img {
     @DatabaseField
     private String localPath;
 
-    public Download_Img(int imgID, String localPath) {
+    public Download_Img() {
+    }
+
+    public Download_Img(String imgID, String localPath) {
         this.imgID = imgID;
         this.localPath = localPath;
     }
 
-    public Download_Img(int id, int imgID, String localPath) {
+    public Download_Img(int id, String imgID, String localPath) {
         this.id = id;
         this.imgID = imgID;
         this.localPath = localPath;
+    }
+
+    @Override
+    public String toString() {
+        return "Download_Img{" +
+                "id=" + id +
+                ", imgID='" + imgID + '\'' +
+                ", localPath='" + localPath + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -43,31 +58,19 @@ public class Download_Img {
         this.id = id;
     }
 
+    public String getImgID() {
+        return imgID;
+    }
+
+    public void setImgID(String imgID) {
+        this.imgID = imgID;
+    }
+
     public String getLocalPath() {
         return localPath;
     }
 
     public void setLocalPath(String localPath) {
         this.localPath = localPath;
-    }
-
-    public int getImgID() {
-        return imgID;
-    }
-
-    public void setImgID(int imgID) {
-        this.imgID = imgID;
-    }
-
-    public Download_Img() {
-    }
-
-    @Override
-    public String toString() {
-        return "Download_Img{" +
-                "id=" + id +
-                ", imgID=" + imgID +
-                ", localPath='" + localPath + '\'' +
-                '}';
     }
 }
