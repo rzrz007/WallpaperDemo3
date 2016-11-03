@@ -1,9 +1,12 @@
 package com.example.zren.wallpaperdemo3.common;
 
+import java.util.List;
+
 /**
  * Created by hsjwcf on 16/10/22.
  */
 public class Images {
+    public static List<String> ImageList = null;
     public final static String[] imageUrls = new String[] {
             "http://img.my.csdn.net/uploads/201309/01/1378037235_3453.jpg",
             "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg",
