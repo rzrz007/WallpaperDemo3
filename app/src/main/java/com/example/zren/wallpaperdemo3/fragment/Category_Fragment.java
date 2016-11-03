@@ -87,7 +87,6 @@ public class Category_Fragment extends Fragment {
                 bundle.putSerializable("data",datas.get(position));
                 intent.putExtras(bundle);
                 startActivity(intent);
-                Toast.makeText(getActivity(), "第" + position + "被点击了!id="+datas.get(position).getID(), Toast.LENGTH_SHORT).show();
             }
         });
     }

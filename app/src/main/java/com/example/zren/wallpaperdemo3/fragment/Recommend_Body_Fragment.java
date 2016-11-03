@@ -111,7 +111,7 @@ public class Recommend_Body_Fragment extends Fragment {
                             recyclerView= (RecyclerView) view.findViewById(R.id.recyclerView);
                             GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3);
                             recyclerView.setLayoutManager(gridLayoutManager);
-                            adapter=new MyAdapter(Images.imageUrls,Images.ImageList);
+                            adapter=new MyAdapter(Images.ImageList);
                             //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
                             recyclerView.setAdapter(adapter);
                             adapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener() {
@@ -133,7 +133,6 @@ public class Recommend_Body_Fragment extends Fragment {
 
     private static final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener{
         private ViewGroup viewGroup;
-        private String[] imageUrls;
         private List<String> ImageList;
 
         @Override
@@ -150,8 +149,7 @@ public class Recommend_Body_Fragment extends Fragment {
         }
         private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
-        public MyAdapter(String[] imageUrls ,List<String> imageList) {
-            this.imageUrls=imageUrls;
+        public MyAdapter(List<String> imageList) {
             this.ImageList=imageList;
         }
 
@@ -174,7 +172,6 @@ public class Recommend_Body_Fragment extends Fragment {
 
             int img_width=width/3;
             int img_height=img_width*2;
-            System.out.println("ImageList.get(position)="+ImageList.get(position));
             Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width,img_height-30).into(holder.imageView_img);
             holder.imageView_img.setTag(ImageList.get(position));
         }
@@ -182,7 +179,7 @@ public class Recommend_Body_Fragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return imageUrls.length;
+            return ImageList.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
