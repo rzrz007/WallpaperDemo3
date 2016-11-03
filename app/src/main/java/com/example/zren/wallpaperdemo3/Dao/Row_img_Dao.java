@@ -3,7 +3,7 @@ package com.example.zren.wallpaperdemo3.dao;
 import android.content.Context;
 
 import com.example.zren.wallpaperdemo3.db.DBHelper;
-import com.example.zren.wallpaperdemo3.domain.Row_Img;
+import com.example.zren.wallpaperdemo3.db.Row_Img;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;

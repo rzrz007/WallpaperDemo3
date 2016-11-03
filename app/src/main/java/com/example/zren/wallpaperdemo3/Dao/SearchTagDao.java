@@ -3,11 +3,10 @@ package com.example.zren.wallpaperdemo3.dao;
 import android.content.Context;
 
 import com.example.zren.wallpaperdemo3.db.DBHelper;
-import com.example.zren.wallpaperdemo3.domain.SearchTag;
+import com.example.zren.wallpaperdemo3.db.SearchTag;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.table.DatabaseTable;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
