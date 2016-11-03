@@ -40,7 +40,6 @@ public class Recommend_Body_Fragment extends Fragment {
     public String Path;
     public String JsonString;
     private Recommend_Images recommend_images;
-    private Handler mainHandler;
     public Recommend_Body_Fragment() {
         // Required empty public constructor
     }
@@ -58,25 +57,7 @@ public class Recommend_Body_Fragment extends Fragment {
 
         InitData(view);
 
-        new Handler(){
-            public void handleMessage(Message msg) {
-                System.out.println("进入handleMessage");
-                Gson gson=new Gson();
-                String str= (String) msg.obj;
-                recommend_images=gson.fromJson(str,Recommend_Images.class);
-                for(int i=0;i<recommend_images.getData().getWallpaperListInfo().size();i++){
-                    Images.ImageList.add(recommend_images.getData().getWallpaperListInfo().get(i).getWallPaperMiddle());
-                }
 
-                recyclerView= (RecyclerView) view.findViewById(R.id.recyclerView);
-                GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3);
-                recyclerView.setLayoutManager(gridLayoutManager);
-                adapter=new MyAdapter(Images.imageUrls,Images.ImageList);
-                //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
-                recyclerView.setAdapter(adapter);
-
-            }
-        };
         xRefreshView= (XRefreshView) view.findViewById(R.id.xRefreshView);
         xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
             @Override
@@ -84,18 +65,6 @@ public class Recommend_Body_Fragment extends Fragment {
                 InitData(view);
                 adapter.notifyDataSetChanged();
                 xRefreshView.stopRefresh();
-                /*new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SystemClock.sleep(2000);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                xRefreshView.stopRefresh();
-                            }
-                        });
-                    }
-                }).start();*/
             }
 
             @Override
@@ -123,11 +92,7 @@ public class Recommend_Body_Fragment extends Fragment {
                 try {
                     JsonString=NetUtils.inputStreamToString(inputStream);
                     System.out.println("JsonSting"+JsonString);
-                    /*Message message=Message.obtain();
-                    message.obj=JsonString;
-                    Message msg=Message.obtain(message);
-                    msg.setTarget(mainHandler);
-                    msg.sendToTarget();*/
+
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -155,10 +120,6 @@ public class Recommend_Body_Fragment extends Fragment {
 
             }
         }).start();
-    }
-
-    private void getData() {
-        adapter.notifyDataSetChanged();
     }
 
     private final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
