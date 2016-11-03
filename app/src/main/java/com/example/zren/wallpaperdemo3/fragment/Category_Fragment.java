@@ -34,6 +34,7 @@ public class Category_Fragment extends Fragment {
 
     //声明ListView
     private ListView listView_category;
+    private ImageView imageView_load;
     //声明数据源
     private List<Category_Images.DataEntity> datas = new ArrayList<>();
     //声明适配器对象
@@ -57,6 +58,10 @@ public class Category_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_category, container, false);
         this.listView_category = (ListView) view.findViewById(R.id.category_lv);
+        this.imageView_load= (ImageView) view.findViewById(R.id.imageView_load);
+        this.imageView_load.setVisibility(View.VISIBLE);
+        animationDrawable= (AnimationDrawable) imageView_load.getDrawable();
+        animationDrawable.start();
         this.initData("http://bz.budejie.com/?typeid=2&ver=3.4.3&no_cry=1&client=android&c=wallPaper&a=category");
 
         return view;
@@ -65,6 +70,7 @@ public class Category_Fragment extends Fragment {
     private void initView() {
         if (isFirst){
             this.adapter = new MyAdapter();
+            this.imageView_load.setVisibility(View.GONE);
             this.listView_category.setAdapter(adapter);
             isFirst=false;
         }else {
@@ -147,8 +153,6 @@ public class Category_Fragment extends Fragment {
             }
 
             Category_Images.DataEntity data = datas.get(position);
-            animationDrawable= (AnimationDrawable) viewHolder.imageView_categoryPic.getDrawable();
-            animationDrawable.start();
             viewHolder.textView_picCategoryName.setText(data.getPicCategoryName());
             viewHolder.textView_descWords.setText(data.getDescWords());
             Picasso.with(getContext()).load(data.getCategoryPic()).resize(90,60).into(viewHolder.imageView_categoryPic);
