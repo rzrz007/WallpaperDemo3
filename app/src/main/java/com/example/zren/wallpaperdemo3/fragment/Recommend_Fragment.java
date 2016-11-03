@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.common.Images;
+import com.example.zren.wallpaperdemo3.common.JsonUrl;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -77,12 +78,16 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
         //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
 
         data=new ArrayList<>();
-        Recommend_Body_Fragment recommend_body_fragment1=new Recommend_Body_Fragment();
-        Recommend_Body_Fragment recommend_body_fragment2=new Recommend_Body_Fragment();
-        Recommend_Body_Fragment recommend_body_fragment3=new Recommend_Body_Fragment();
+        Recommend_Body_Fragment recommend_body_fragment1=new Recommend_Body_Fragment(JsonUrl.NEWS);
+
+        Recommend_Body_Fragment recommend_body_fragment2=new Recommend_Body_Fragment(JsonUrl.HOT);
+
+        Recommend_Body_Fragment recommend_body_fragment3=new Recommend_Body_Fragment(JsonUrl.RANDOM);
+
         data.add(recommend_body_fragment1);
         data.add(recommend_body_fragment2);
         data.add(recommend_body_fragment3);
+        viewPager_Body.setOffscreenPageLimit(3);
         viewPager_Body.setAdapter(new MyPagerAdapter(getFragmentManager()));
         viewPager_Body.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
