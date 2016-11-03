@@ -1,12 +1,13 @@
 package com.example.zren.wallpaperdemo3.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by gwy54 on 2016/11/2.
  */
 
-public class Category_Images {
+public class Category_Images implements Serializable{
 
     /**
      * code : E00000000
@@ -42,7 +43,7 @@ public class Category_Images {
         return data;
     }
 
-    public static class DataEntity {
+    public static class DataEntity implements Serializable {
         /**
          * ID : 1042
          * TipContent : 小编日也加班为大家寻找美图，恳请大家给个好评！
@@ -157,7 +158,7 @@ public class Category_Images {
             return tags;
         }
 
-        public static class SecondCategoryListEntity {
+        public static class SecondCategoryListEntity implements Serializable{
             /**
              * ID : 2140
              * BigCategoryId : 1042
@@ -203,7 +204,7 @@ public class Category_Images {
             }
         }
 
-        public static class TagsEntity {
+        public static class TagsEntity implements Serializable{
             /**
              * id : 164
              * name : 美女

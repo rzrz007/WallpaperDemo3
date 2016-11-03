@@ -1,6 +1,7 @@
 package com.example.zren.wallpaperdemo3.fragment;
 
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zren.wallpaperdemo3.R;
+import com.example.zren.wallpaperdemo3.activity.CategoryDetailActivity;
 import com.example.zren.wallpaperdemo3.domain.Category_Images;
 import com.example.zren.wallpaperdemo3.utils.NetUtils;
 import com.google.gson.Gson;
@@ -80,6 +82,11 @@ public class Category_Fragment extends Fragment {
         this.listView_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(), CategoryDetailActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("data",datas.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
                 Toast.makeText(getActivity(), "第" + position + "被点击了!id="+datas.get(position).getID(), Toast.LENGTH_SHORT).show();
             }
         });
