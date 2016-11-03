@@ -3,7 +3,6 @@ package com.example.zren.wallpaperdemo3.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.zren.wallpaperdemo3.domain.Collection_Img;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
