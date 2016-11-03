@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
@@ -50,15 +49,10 @@ public class Recommend_Body_Fragment extends Fragment {
         xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
             @Override
             public void onRefresh() {
-                System.out.println("===onRefresh=====");
-
-
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         SystemClock.sleep(2000);
-
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -121,7 +115,6 @@ public class Recommend_Body_Fragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView_img;
-
             public ViewHolder(View itemView) {
                 super(itemView);
                 imageView_img= (ImageView) itemView.findViewById(R.id.imageView_img);

@@ -1,4 +1,4 @@
-package com.example.zren.wallpaperdemo3.domain;
+package com.example.zren.wallpaperdemo3.db;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
