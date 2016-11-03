@@ -20,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
@@ -114,6 +115,8 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
 
             }
         });
+
+
         return view;
     }
 
