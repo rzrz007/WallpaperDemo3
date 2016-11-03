@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_alignParentTop="true"
-    android:background="@color/white">
+    android:layout_alignParentTop="true">
 
     <RelativeLayout
         android:id="@id/topbar"
@@ -23,6 +22,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
+
     </RelativeLayout>
 
     <View
@@ -47,4 +47,5 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
     </RelativeLayout>
+
 </RelativeLayout>
