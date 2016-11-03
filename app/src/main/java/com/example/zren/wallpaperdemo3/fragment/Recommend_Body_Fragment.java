@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
@@ -40,7 +41,7 @@ public class Recommend_Body_Fragment extends Fragment {
     public String Path;
     public String JsonString;
     private Recommend_Images recommend_images;
-    private Handler mainHandler;
+    private static WindowManager wm;
     public Recommend_Body_Fragment() {
         // Required empty public constructor
     }
@@ -54,29 +55,12 @@ public class Recommend_Body_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view=inflater.inflate(R.layout.fragment_recommend__body_, container, false);
-
+        wm = getActivity().getWindowManager();
 
         InitData(view);
 
-        new Handler(){
-            public void handleMessage(Message msg) {
-                System.out.println("进入handleMessage");
-                Gson gson=new Gson();
-                String str= (String) msg.obj;
-                recommend_images=gson.fromJson(str,Recommend_Images.class);
-                for(int i=0;i<recommend_images.getData().getWallpaperListInfo().size();i++){
-                    Images.ImageList.add(recommend_images.getData().getWallpaperListInfo().get(i).getWallPaperMiddle());
-                }
 
-                recyclerView= (RecyclerView) view.findViewById(R.id.recyclerView);
-                GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3);
-                recyclerView.setLayoutManager(gridLayoutManager);
-                adapter=new MyAdapter(Images.imageUrls,Images.ImageList);
-                //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
-                recyclerView.setAdapter(adapter);
 
-            }
-        };
         xRefreshView= (XRefreshView) view.findViewById(R.id.xRefreshView);
         xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
             @Override
@@ -84,18 +68,6 @@ public class Recommend_Body_Fragment extends Fragment {
                 InitData(view);
                 adapter.notifyDataSetChanged();
                 xRefreshView.stopRefresh();
-                /*new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SystemClock.sleep(2000);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                xRefreshView.stopRefresh();
-                            }
-                        });
-                    }
-                }).start();*/
             }
 
             @Override
@@ -123,11 +95,7 @@ public class Recommend_Body_Fragment extends Fragment {
                 try {
                     JsonString=NetUtils.inputStreamToString(inputStream);
                     System.out.println("JsonSting"+JsonString);
-                    /*Message message=Message.obtain();
-                    message.obj=JsonString;
-                    Message msg=Message.obtain(message);
-                    msg.setTarget(mainHandler);
-                    msg.sendToTarget();*/
+
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -146,6 +114,12 @@ public class Recommend_Body_Fragment extends Fragment {
                             adapter=new MyAdapter(Images.imageUrls,Images.ImageList);
                             //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
                             recyclerView.setAdapter(adapter);
+                            adapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, String data) {
+                                    Toast.makeText(getActivity(), "点击了图片", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
 
@@ -157,14 +131,24 @@ public class Recommend_Body_Fragment extends Fragment {
         }).start();
     }
 
-    private void getData() {
-        adapter.notifyDataSetChanged();
-    }
-
-    private final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
-
+    private static final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener{
+        private ViewGroup viewGroup;
         private String[] imageUrls;
         private List<String> ImageList;
+
+        @Override
+        public void onClick(View v) {
+            if (mOnItemClickListener != null) {
+                //注意这里使用getTag方法获取数据
+                mOnItemClickListener.onItemClick(v,(String)v.getTag());
+            }
+        }
+
+
+        public static interface OnRecyclerViewItemClickListener {
+            void onItemClick(View view , String data);
+        }
+        private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
         public MyAdapter(String[] imageUrls ,List<String> imageList) {
             this.imageUrls=imageUrls;
@@ -173,14 +157,17 @@ public class Recommend_Body_Fragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view=View.inflate(getContext(),R.layout.item,null);
+            
+            this.viewGroup=parent;
+            View view=View.inflate(parent.getContext(),R.layout.item,null);
             ViewHolder viewHolder=new ViewHolder(view);
+            view.setOnClickListener(this);
             return viewHolder;
         }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            WindowManager wm = getActivity().getWindowManager();
+            
 
             int width = wm.getDefaultDisplay().getWidth();
             int height = wm.getDefaultDisplay().getHeight();
@@ -188,7 +175,8 @@ public class Recommend_Body_Fragment extends Fragment {
             int img_width=width/3;
             int img_height=img_width*2;
             System.out.println("ImageList.get(position)="+ImageList.get(position));
-            Picasso.with(getContext()).load(ImageList.get(position)).resize(img_width,img_height-30).into(holder.imageView_img);
+            Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width,img_height-30).into(holder.imageView_img);
+            holder.imageView_img.setTag(ImageList.get(position));
         }
 
 
@@ -203,6 +191,9 @@ public class Recommend_Body_Fragment extends Fragment {
                 super(itemView);
                 imageView_img= (ImageView) itemView.findViewById(R.id.imageView_img);
             }
+        }
+        public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+            this.mOnItemClickListener = listener;
         }
     }
 
