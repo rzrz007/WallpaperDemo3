@@ -103,6 +103,7 @@ public class CategoryDetailActivity extends AppCompatActivity implements View.On
             }
         });
 
+
     }
 
     private final  class MyPagerAdapter extends FragmentStatePagerAdapter{
