@@ -161,7 +161,7 @@ public class Category_Fragment extends Fragment {
             Category_Images.DataEntity data = datas.get(position);
             viewHolder.textView_picCategoryName.setText(data.getPicCategoryName());
             viewHolder.textView_descWords.setText(data.getDescWords());
-            Picasso.with(getContext()).load(data.getCategoryPic()).resize(90,60).into(viewHolder.imageView_categoryPic);
+            Picasso.with(getContext()).load(data.getCategoryPic()).resize(90,60).placeholder(R.drawable.loading).into(viewHolder.imageView_categoryPic);
             return convertView;
         }
     }
