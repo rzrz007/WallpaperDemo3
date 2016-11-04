@@ -1,6 +1,7 @@
 package com.example.zren.wallpaperdemo3.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.zren.wallpaperdemo3.R;
+import com.example.zren.wallpaperdemo3.activity.DownloadActivity;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -17,7 +19,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * A simple {@link Fragment} subclass.
  */
 public class More_Fragment extends Fragment {
-
+    private Button button_myDownload;
 
     private Button button_shareToFriend;
     public More_Fragment() {
@@ -36,6 +38,14 @@ public class More_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showShare();
+            }
+        });
+        button_myDownload = (Button) view.findViewById(R.id.button_myDownload);
+        button_myDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DownloadActivity.class);
+                startActivity(intent);
             }
         });
         return view;

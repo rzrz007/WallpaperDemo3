@@ -1,6 +1,7 @@
 package com.example.zren.wallpaperdemo3.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
 
+import com.example.zren.wallpaperdemo3.activity.BigImageActivity;
 import com.example.zren.wallpaperdemo3.common.Images;
 import com.example.zren.wallpaperdemo3.common.JsonUrl;
 import com.example.zren.wallpaperdemo3.domain.Recommend_Images;
@@ -117,6 +119,9 @@ public class Recommend_Body_Fragment extends Fragment {
                             adapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, String data) {
+                                    Intent intent=new Intent(getContext(), BigImageActivity.class);
+                                    startActivity(intent);
+                                    System.out.println(view);
                                     Toast.makeText(getActivity(), "点击了图片", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -137,6 +142,7 @@ public class Recommend_Body_Fragment extends Fragment {
 
         @Override
         public void onClick(View v) {
+            System.out.println("view="+v);
             if (mOnItemClickListener != null) {
                 //注意这里使用getTag方法获取数据
                 mOnItemClickListener.onItemClick(v,(String)v.getTag());
@@ -189,6 +195,7 @@ public class Recommend_Body_Fragment extends Fragment {
                 imageView_img= (ImageView) itemView.findViewById(R.id.imageView_img);
             }
         }
+
         public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
             this.mOnItemClickListener = listener;
         }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    >
+
+    <Button
+        android:id="@+id/button_bigimg_snackbar_collection"
+        android:background="@drawable/snackbar_button_shape"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:text="收藏"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        />
+    <Button
+        android:id="@+id/button_bigimg_snackbar_setting"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/snackbar_button_shape"
+        android:layout_weight="1"
+        android:text="设为壁纸"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        />
+    <Button
+        android:id="@+id/button_bigimg_snackbar_download"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/snackbar_button_shape"
+        android:layout_weight="1"
+        android:text="下载"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
