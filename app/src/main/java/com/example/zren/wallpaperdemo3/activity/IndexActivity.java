@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.fragment.Category_Fragment;
 import com.example.zren.wallpaperdemo3.fragment.More_Fragment;
