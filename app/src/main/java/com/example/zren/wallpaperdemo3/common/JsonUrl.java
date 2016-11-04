@@ -19,4 +19,9 @@ public class JsonUrl {
      * 随机
      */
     private String RANDOM="http://bz.budejie.com/?typeid=2&ver=3.4.3&no_cry=1&client=android&c=wallPaper&a=random&bigid=0";
+
+    /**
+     * 分类
+     */
+    private String Category="http://bz.budejie.com/?typeid=2&ver=3.4.3&no_cry=1&client=android&c=wallPaper&a=category";
 }
