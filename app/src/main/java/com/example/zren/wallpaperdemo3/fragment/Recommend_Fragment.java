@@ -3,12 +3,9 @@ package com.example.zren.wallpaperdemo3.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -20,10 +17,12 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.common.Images;
+import com.example.zren.wallpaperdemo3.common.JsonUrl;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,7 +33,6 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
     private XRefreshView xRefreshView;
     private RecyclerView recyclerView;
     private ViewPager viewPager_Body;
-    private MyAdapter adapter;
     private ImageView imageView_line;
     private int width,height;
     private TextView textView_new,textView_hot,textView_random;
@@ -72,16 +70,20 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
         height = wm.getDefaultDisplay().getHeight();
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
 
-        this.adapter=new MyAdapter(Images.imageUrls);
+
         //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
 
         data=new ArrayList<>();
-        Recommend_Body_Fragment recommend_body_fragment1=new Recommend_Body_Fragment();
-        Recommend_Body_Fragment recommend_body_fragment2=new Recommend_Body_Fragment();
-        Recommend_Body_Fragment recommend_body_fragment3=new Recommend_Body_Fragment();
+        Recommend_Body_Fragment recommend_body_fragment1=new Recommend_Body_Fragment(JsonUrl.NEWS);
+
+        Recommend_Body_Fragment recommend_body_fragment2=new Recommend_Body_Fragment(JsonUrl.HOT);
+
+        Recommend_Body_Fragment recommend_body_fragment3=new Recommend_Body_Fragment(JsonUrl.RANDOM);
+
         data.add(recommend_body_fragment1);
         data.add(recommend_body_fragment2);
         data.add(recommend_body_fragment3);
+        viewPager_Body.setOffscreenPageLimit(3);
         viewPager_Body.setAdapter(new MyPagerAdapter(getFragmentManager()));
         viewPager_Body.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -109,6 +111,8 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
 
             }
         });
+
+
         return view;
     }
 
@@ -130,45 +134,9 @@ public class Recommend_Fragment extends Fragment implements View.OnClickListener
             return data.size();
         }
     }
-    private void getData() {
-        adapter.notifyDataSetChanged();
-    }
-
-    private final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
-
-        private String[] imageUrls;
-
-        public MyAdapter(String[] imageUrls) {
-            this.imageUrls=imageUrls;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view=View.inflate(getContext(),R.layout.item,null);
-            ViewHolder viewHolder=new ViewHolder(view);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            Picasso.with(getContext()).load(imageUrls[position]).into(holder.imageView_img);
-        }
 
 
-        @Override
-        public int getItemCount() {
-            return imageUrls.length;
-        }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView imageView_img;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                imageView_img= (ImageView) itemView.findViewById(R.id.imageView_img);
-            }
-        }
-    }
     public void onClick(View view){
         System.out.println("进入onClick");
         System.out.println("view.getId="+view.getId());
