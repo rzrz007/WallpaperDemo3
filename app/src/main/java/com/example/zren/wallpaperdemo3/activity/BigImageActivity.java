@@ -107,24 +107,23 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
     private void initView() {
         this.frameLayout_bigimg= (FrameLayout) findViewById(R.id.frameLayout_bigimg);
         this.viewPager_bigimg= (ViewPager) findViewById(R.id.viewPager_bigimg);
-        this.imageButton_bigimg_popup_back= (ImageButton) findViewById(R.id.imageButton_bigimg_popup_back);
-        this.imageView_bigimg_popup_share= (ImageButton) findViewById(R.id.imageView_bigimg_popup_share);
         this.textView_bigimg_popup= (TextView) findViewById(R.id.textView_bigimg_popup);
-        this.button_bigimg_snackbar_collection= (Button) findViewById(R.id.button_bigimg_snackbar_collection);
-        this.button_bigimg_snackbar_setting= (Button) findViewById(R.id.button_bigimg_snackbar_setting);
-        this.button_bigimg_snackbar_download= (Button) findViewById(R.id.button_bigimg_snackbar_download);
 
         //实例化snackbar并指定其父布局和参数
         this.snackbar=Snackbar.make(this.frameLayout_bigimg,null,Snackbar.LENGTH_INDEFINITE);
         //指定popupWindow中填充的布局
         View popupView = getLayoutInflater().inflate(R.layout.popupwindow_big_img, null);
+        this.imageButton_bigimg_popup_back= (ImageButton) popupView.findViewById(R.id.imageButton_bigimg_popup_back);
+        this.imageView_bigimg_popup_share= (ImageButton) popupView.findViewById(R.id.imageView_bigimg_popup_share);
         //实例化popupWindow并指定其父布局和参数
         this.popupWindow = new PopupWindow(popupView, FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
-
         //给snackbar填充布局
         View snackbarview = snackbar.getView();//获取snackbar的View(其实就是SnackbarLayout)
         Snackbar.SnackbarLayout snackbarLayout=(Snackbar.SnackbarLayout)snackbarview;//将获取的View转换成SnackbarLayout
         View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(R.layout.snackbar_big_img,null);//加载布局文件新建View
+        this.button_bigimg_snackbar_collection= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_collection);
+        this.button_bigimg_snackbar_setting= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_setting);
+        this.button_bigimg_snackbar_download= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_download);
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);//设置新建布局参数
         param.gravity= Gravity.CENTER_VERTICAL;//设置新建布局在Snackbar内垂直居中显示
         snackbarLayout.addView(add_view,1,param);//将新建布局添加进snackbarLayout相应位置

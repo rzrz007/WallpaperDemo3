@@ -37,7 +37,8 @@
         <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.DownloadActivity" />
         <activity android:name=".activity.Download_sonPic_Activity" />
-        <activity android:name=".activity.CategoryDetailActivity"></activity>
+        <activity android:name=".activity.CategoryDetailActivity"/>
+        <activity android:name=".activity.BigImageActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
