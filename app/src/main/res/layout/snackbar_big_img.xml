@@ -6,6 +6,7 @@
     >
 
     <Button
+        android:id="@+id/button_bigimg_snackbar_collection"
         android:background="@drawable/snackbar_button_shape"
         android:layout_margin="10dp"
         android:padding="10dp"
@@ -16,6 +17,7 @@
         android:textColor="@color/white"
         />
     <Button
+        android:id="@+id/button_bigimg_snackbar_setting"
         android:layout_margin="10dp"
         android:padding="10dp"
         android:background="@drawable/snackbar_button_shape"
@@ -26,6 +28,7 @@
         android:textColor="@color/white"
         />
     <Button
+        android:id="@+id/button_bigimg_snackbar_download"
         android:textColor="@color/white"
         android:layout_margin="10dp"
         android:padding="10dp"
