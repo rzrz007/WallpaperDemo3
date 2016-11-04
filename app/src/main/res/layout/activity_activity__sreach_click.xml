@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/searchMainRl"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@null">
+
+    <LinearLayout
+        android:id="@id/searchArea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/margin_10">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/search_area_height"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/margin_5"
+            android:background="@drawable/search_area_selector"
+            android:gravity="center">
+
+            <EditText
+                android:id="@id/searchEt"
+                android:layout_width="fill_parent"
+                android:layout_height="30.0dip"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15.0sp"
+                android:layout_marginRight="55.0sp"
+                android:background="@drawable/search_et_normal"
+                android:drawableLeft="@mipmap/search_icon"
+                android:drawablePadding="10.0sp"
+                android:focusable="true"
+                android:imeOptions="actionGo"
+                android:singleLine="true"
+                android:textSize="16.0sp" />
+
+            <Button
+                android:id="@id/btn"
+                android:layout_width="50.0sp"
+                android:layout_height="46.0sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:text="确定"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@id/dividerline"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_below="@id/searchArea"
+        android:background="@color/darkgrey" />
+
+    <ListView
+        android:id="@+id/lv_serach"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

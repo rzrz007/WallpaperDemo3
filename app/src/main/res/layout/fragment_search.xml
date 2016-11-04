@@ -1,13 +1,332 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.zren.wallpaperdemo3.fragment.Search_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <LinearLayout
+
+        android:layout_marginTop="10dp"
+        android:id="@id/searchArea"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/search_area_height"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
+        android:background="@drawable/search_area_selector"
+        android:clickable="true"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_5"
+            android:src="@mipmap/search_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_size_small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#999999" />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="搜索" />
+        android:orientation="vertical">
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="热门搜索"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+
+
+
+
+        <com.example.zren.wallpaperdemo3.utils.XCRoundRectImageView
+            android:id="@+id/xc_car"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@mipmap/a1a" />
+
+        <com.example.zren.wallpaperdemo3.utils.XCRoundRectImageView
+            android:id="@+id/xc_cartoon"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@mipmap/a2a" />
+
+        <com.example.zren.wallpaperdemo3.utils.XCRoundRectImageView
+            android:id="@+id/xc_Scenery"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@mipmap/a3a" />
+
+        <com.example.zren.wallpaperdemo3.utils.XCRoundRectImageView
+            android:id="@+id/xc_Animal"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@mipmap/a4a" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#999999" />
+
+    <android.support.v4.view.ViewPager
+        android:paddingTop="10dp"
+        android:id="@+id/search_vp"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_marginTop="5dp"
+        android:background="#f5f9f8" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_img_ratio_selected" />
+
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_img_ratio" />
+
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_img_ratio" />
+
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_img_ratio" />
+
+        <TextView
+            android:text="查看更多"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#999999" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文字" />
+
+    <LinearLayout
+        android:id="@+id/ll_character"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/c1" />
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/c2" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/c3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999999" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="植物" />
+
+    <LinearLayout
+        android:id="@+id/ll_plant"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/d1" />
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/d2" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/d3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999999" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="动物" />
+
+    <LinearLayout
+        android:id="@+id/ll_animal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/e1" />
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/e2" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/e3" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999999" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="可爱" />
+
+    <LinearLayout
+        android:id="@+id/ll_cute"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/f1" />
+
+        <ImageView
+            android:layout_marginRight="3dp"
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/f2" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="380dp"
+            android:layout_weight="1"
+            android:src="@mipmap/f3" />
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
