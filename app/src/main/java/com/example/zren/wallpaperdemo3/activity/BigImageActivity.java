@@ -1,4 +1,5 @@
 package com.example.zren.wallpaperdemo3.activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -22,11 +23,18 @@ import android.widget.TextView;
 
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.common.Images;
+import com.example.zren.wallpaperdemo3.domain.ImagePath;
+import com.example.zren.wallpaperdemo3.domain.Recommend_Images;
 import com.example.zren.wallpaperdemo3.utils.NetUtils;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.data;
+import static android.R.attr.id;
 
 public class BigImageActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -38,36 +46,48 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
     private TextView textView_bigimg_popup;
     private Button button_bigimg_snackbar_collection,button_bigimg_snackbar_setting,button_bigimg_snackbar_download;
 
-    private String[] data;
+    private List<String> data;
     private List<View> content;
     private BigImageViewPagerAdapter adapter;
+
+    private String jsonString;
+    private Recommend_Images recommend_images;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_big_image);
-        this.initData();
         this.initView();
+        Intent intent=getIntent();
+        ImagePath imagePath= (ImagePath) getIntent().getSerializableExtra("path");
+        data=imagePath.getImagepath();
+
+        id=intent.getIntExtra("data",0);
+        System.out.println("id="+id+",list="+this.data.size());
+
+        adapter=new BigImageViewPagerAdapter();
+        viewPager_bigimg.setAdapter(adapter);
         this.setListener();
     }
 
-    private void initData() {
-        this.data= Images.imageUrls;
-        final int len=data.length;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                content=getBitmap(data,len);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter=new BigImageViewPagerAdapter();
-                        viewPager_bigimg.setAdapter(adapter);
-                    }
-                });
-            }
-        }).start();
-    }
+//    private void initData() {
+//        this.data= Images.imageUrls;
+//        final int len=data.length;
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                content=getBitmap(data,len);
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        adapter=new BigImageViewPagerAdapter();
+//                        viewPager_bigimg.setAdapter(adapter);
+//                    }
+//                });
+//            }
+//        }).start();
+//    }
 
     private List<View> getBitmap(String[] imageUrls,int len) {
         this.content=new ArrayList<>();
@@ -177,13 +197,16 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
 
         @Override
         public int getCount() {
-            return content.size();
+            return data.size();
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(content.get(position));
-            return content.get(position);
+            //container.addView(content.get(position));
+            ImageView imageView=new ImageView(getApplicationContext());
+            Picasso.with(getApplicationContext()).load(data.get(position)).into(imageView);
+            container.addView(imageView);
+            return imageView;
         }
 
         @Override
@@ -193,7 +216,10 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(content.get(position));
+            if (object instanceof View){
+                View view= (View) object;
+                container.removeView(view);
+            }
         }
     }
 }
