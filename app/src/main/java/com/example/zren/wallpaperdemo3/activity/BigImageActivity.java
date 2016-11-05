@@ -135,6 +135,7 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);//设置新建布局参数
         param.gravity= Gravity.CENTER_VERTICAL;//设置新建布局在Snackbar内垂直居中显示
         snackbarLayout.addView(add_view,1,param);//将新建布局添加进snackbarLayout相应位置
+        snackbarLayout.setAlpha(Float.parseFloat("0.7"));
 
         //给popupWindow设置参数
         popupWindow.setTouchable(true);
