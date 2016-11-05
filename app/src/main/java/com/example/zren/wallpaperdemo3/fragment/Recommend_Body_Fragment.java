@@ -191,7 +191,7 @@ public class Recommend_Body_Fragment extends Fragment {
             int img_width = width / 3;
             int img_height = img_width * 2;
             System.out.println("ImageList.get(position)=" + ImageList.get(position));
-            Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width, img_height - 30).into(holder.imageView_img);
+            Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width, img_height - 30).placeholder(R.drawable.load_big).into(holder.imageView_img);
             holder.imageView_img.setTag(position);
             holder.imageView_img.setOnClickListener(this);
         }
@@ -208,6 +208,7 @@ public class Recommend_Body_Fragment extends Fragment {
             public ViewHolder(View itemView) {
                 super(itemView);
                 imageView_img = (ImageView) itemView.findViewById(R.id.imageView_img);
+                imageView_img.setScaleType(ImageView.ScaleType.FIT_XY);
             }
         }
 

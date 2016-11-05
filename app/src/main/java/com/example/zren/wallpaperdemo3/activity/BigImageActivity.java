@@ -13,6 +13,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -57,6 +59,8 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_big_image);
         this.initView();
         Intent intent=getIntent();
@@ -72,23 +76,6 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
         this.setListener();
     }
 
-//    private void initData() {
-//        this.data= Images.imageUrls;
-//        final int len=data.length;
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                content=getBitmap(data,len);
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        adapter=new BigImageViewPagerAdapter();
-//                        viewPager_bigimg.setAdapter(adapter);
-//                    }
-//                });
-//            }
-//        }).start();
-//    }
 
     private List<View> getBitmap(String[] imageUrls,int len) {
         this.content=new ArrayList<>();
@@ -205,7 +192,20 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
         public Object instantiateItem(ViewGroup container, int position) {
             //container.addView(content.get(position));
             ImageView imageView=new ImageView(getApplicationContext());
-            Picasso.with(getApplicationContext()).load(data.get(position)).into(imageView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            Picasso.with(getApplicationContext()).load(data.get(position)).placeholder(R.drawable.load_big).into(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!snackbar.isShown()) {
+                        snackbar.show();
+                        popupWindow.showAtLocation(v,Gravity.TOP,0,0);
+                    } else if (snackbar.isShown()) {
+                        snackbar.dismiss();
+                        popupWindow.dismiss();
+                    }
+                }
+            });
             container.addView(imageView);
             return imageView;
         }
