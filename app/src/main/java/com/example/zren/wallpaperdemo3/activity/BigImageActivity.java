@@ -68,6 +68,7 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
 
         adapter=new BigImageViewPagerAdapter();
         viewPager_bigimg.setAdapter(adapter);
+        viewPager_bigimg.setCurrentItem(id);
         this.setListener();
     }
 
