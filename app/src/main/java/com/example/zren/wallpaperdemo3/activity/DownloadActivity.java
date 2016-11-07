@@ -46,10 +46,9 @@ public class DownloadActivity extends AppCompatActivity {
             switch (msg.what) {
                 case 0:
                     textView_showState.setVisibility(View.GONE);
-                    gridView_showPic.setVisibility(View.VISIBLE);
                     break;
                 case 1:
-                    textView_showState.setText("没有找到图片资源");
+                    textView_showState.setText("未找到图片资源");
                     break;
             }
             return false;
@@ -75,12 +74,9 @@ public class DownloadActivity extends AppCompatActivity {
             }
         });
 
-        //设置网状视图不可见
-        gridView_showPic.setVisibility(View.INVISIBLE);
-
 		/* 遍历sdcard旗下的所有文件夹开始 */
         readSdcard = new Thread() {
-            // 获取sdcard的 Pictures 文件夹路径
+            // 获取sdCard的 Pictures 文件夹路径
             private String sdpath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
             private File dirFile = new File(sdpath);
 
@@ -90,19 +86,17 @@ public class DownloadActivity extends AppCompatActivity {
                     //打印图片路径集合
                     System.out.println(dirAllStrArr + "==============");
                     count = dirAllStrArr.size();
-                    Message msg = new Message();
-                    if (dirAllStrArr != null) {
-                        msg.what = 0;
-                    } else {
-                        msg.what = 1;
+                    if (dirAllStrArr.isEmpty()) {
+                        handler.sendEmptyMessage(1);
+                    }else{
+                        handler.sendEmptyMessage(0);
                     }
-                    handler.sendMessage(msg);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        textView_showState.setVisibility(View.VISIBLE);
 
         readSdcard.start();
 

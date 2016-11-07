@@ -44,12 +44,13 @@ public class More_Fragment extends Fragment {
                 showShare();
             }
         });
+
         button_more_myCollection = (Button) view.findViewById(R.id.button_myCollection);
         button_more_myCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),CollectionActivity.class);
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
         button_more_myDownload = (Button) view.findViewById(R.id.button_myDownload);

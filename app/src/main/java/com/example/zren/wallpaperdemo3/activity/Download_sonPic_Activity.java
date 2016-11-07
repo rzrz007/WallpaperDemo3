@@ -45,6 +45,7 @@ public class Download_sonPic_Activity extends AppCompatActivity {
 
         imgPath2 = bundle.getString("picFile");
 
+        //解析本地图片资源
         bitmap1 = BitmapFactory.decodeFile(imgPath1);
 
         bitmap2 = BitmapFactory.decodeFile(imgPath2);

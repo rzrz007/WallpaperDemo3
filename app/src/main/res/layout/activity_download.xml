@@ -37,15 +37,17 @@
 
         <TextView
             android:id="@+id/textView_showState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="未搜索到图片资源"
+            android:gravity="center"
             android:textSize="36sp" />
 
         <GridView
             android:id="@+id/gridView_showPic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="2"></GridView>
+            android:numColumns="2"/>
 
     </LinearLayout>
 </LinearLayout>

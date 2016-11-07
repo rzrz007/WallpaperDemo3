@@ -37,9 +37,11 @@
         <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.DownloadActivity" />
         <activity android:name=".activity.Download_sonPic_Activity" />
+        <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.BigImageActivity" />
         <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.BigImageActivity" />
+        <activity android:name=".activity.CollectionActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -73,6 +75,9 @@
         <activity android:name=".activity.Activity_Serach_base" />
         <activity android:name=".activity.Activity_Serach_10sort" />
         <activity android:name=".activity.Activity_Search_10sort_detial"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
 
 </manifest>
