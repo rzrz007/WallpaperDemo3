@@ -29,60 +29,70 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/iv_point_1"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_2"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_3"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_4"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_5"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_6"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_7"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_8"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_9"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/iv_point_10"
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:src="@mipmap/z10"

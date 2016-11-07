@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -19,6 +18,7 @@
     <!-- 蓝牙分享所需的权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -37,8 +37,8 @@
         <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.DownloadActivity" />
         <activity android:name=".activity.Download_sonPic_Activity" />
-        <activity android:name=".activity.BigImageActivity"/>
-        <activity android:name=".activity.CategoryDetailActivity"/>
+        <activity android:name=".activity.BigImageActivity" />
+        <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.BigImageActivity" />
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -48,7 +48,9 @@
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -56,6 +58,7 @@
             <!-- 调用新浪原生SDK，需要注册的回调activity -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -67,8 +70,9 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.Activity_SreachClick" />
         <activity android:name=".activity.Activity_SerachClick_detial" />
-        <activity android:name=".activity.Activity_Serach_base"></activity>
-        <activity android:name=".activity.Activity_Serach_10sort"></activity>
+        <activity android:name=".activity.Activity_Serach_base" />
+        <activity android:name=".activity.Activity_Serach_10sort" />
+        <activity android:name=".activity.Activity_Search_10sort_detial"></activity>
     </application>
 
 </manifest>
