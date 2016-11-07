@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.zren.wallpaperdemo3.R;
+import com.example.zren.wallpaperdemo3.activity.CollectionActivity;
 import com.example.zren.wallpaperdemo3.activity.DownloadActivity;
 
 import cn.sharesdk.framework.ShareSDK;
@@ -19,9 +20,12 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * A simple {@link Fragment} subclass.
  */
 public class More_Fragment extends Fragment {
-    private Button button_myDownload;
+    private Button button_more_myDownload;
 
-    private Button button_shareToFriend;
+    private Button button_more_shareToFriend;
+
+    private Button button_more_myCollection;
+
     public More_Fragment() {
     }
     public static Fragment getInstance() {
@@ -33,21 +37,31 @@ public class More_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_more, container, false);
-        this.button_shareToFriend= (Button) view.findViewById(R.id.button_shareToFriend);
-        this.button_shareToFriend.setOnClickListener(new View.OnClickListener() {
+        this.button_more_shareToFriend= (Button) view.findViewById(R.id.button_shareToFriend);
+        this.button_more_shareToFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showShare();
             }
         });
-        button_myDownload = (Button) view.findViewById(R.id.button_myDownload);
-        button_myDownload.setOnClickListener(new View.OnClickListener() {
+        button_more_myCollection = (Button) view.findViewById(R.id.button_myCollection);
+        button_more_myCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),CollectionActivity.class);
+                //startActivity(intent);
+            }
+        });
+        button_more_myDownload = (Button) view.findViewById(R.id.button_myDownload);
+        button_more_myDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), DownloadActivity.class);
                 startActivity(intent);
             }
         });
+
+
         return view;
     }
 

@@ -1,5 +1,7 @@
 package com.example.zren.wallpaperdemo3.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.utils.DownLoadUtils;
@@ -103,7 +106,7 @@ public class DownloadActivity extends AppCompatActivity {
 
         readSdcard.start();
 
-        BaseAdapter baseAdapter = new BaseAdapter() {
+        final BaseAdapter baseAdapter = new BaseAdapter() {
 
             @Override
             public View getView(int position, View convertView, ViewGroup viewGroup) {
@@ -150,17 +153,46 @@ public class DownloadActivity extends AppCompatActivity {
         };
 
         gridView_showPic.setAdapter(baseAdapter);// 把适配器与网格视图链接起来
+
+        //设置图片点击事件
         gridView_showPic.setOnItemClickListener(new AdapterView.OnItemClickListener() {// 点击网格组件的任意一张图片时候的事件
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,
-                                    int position,// position为点击的id
-                                    long arg3) {
-                Intent intent = new Intent(DownloadActivity.this,
-                        Download_sonPic_Activity.class);// 激活子Activity;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(DownloadActivity.this, Download_sonPic_Activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("imgPath", dirAllStrArr.get(position));// 传递点击的图片的id到ViewActivity
                 intent.putExtras(bundle);
                 startActivity(intent);
+            }
+        });
+
+        gridView_showPic.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                System.out.println("onItemLongClick(AdapterView<?> parent = " + parent + ", View view=" + view + ", int position=" + position + ", long id=" + id + ")");
+                final String temp = dirAllStrArr.get(position);
+                File file = new File(temp);
+                if (file.exists()) {
+                    new AlertDialog.Builder(DownloadActivity.this).setTitle("提示：").setMessage("是否删除？").setNegativeButton("是的", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            File file1 = new File(temp);
+                            if (file1.delete()) {
+                                baseAdapter.notifyDataSetChanged();
+                                Toast.makeText(DownloadActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(DownloadActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }).setPositiveButton("不了", null).show();
+
+                } else {
+                    Toast.makeText(DownloadActivity.this, "图片不存在", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
             }
         });
 

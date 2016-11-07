@@ -14,14 +14,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <!--<TextView
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/umeng_fb_color_btn_pressed" />
+                android:background="@color/umeng_fb_color_btn_pressed" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_black_transparent">
 
                 <Button
                     android:id="@+id/button_back"
@@ -51,10 +52,10 @@
                     android:textColor="@drawable/text_click_style" />
             </LinearLayout>
 
-            <TextView
+            <!--<TextView
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/umeng_fb_color_btn_pressed" />
+                android:background="@color/umeng_fb_color_btn_pressed" />-->
         </LinearLayout>
 
         <ImageView

@@ -48,6 +48,11 @@ public class FileReadUtils {
         return dirAllStrArr;
     }
 
+    public static boolean deleteFile(File deleteFile){
+
+        return deleteFile.delete();
+    }
+
     // 图片加载的缓存工具类，安卓自带的方法
     public static BitmapFactory.Options getHeapOpts(File file) {
         BitmapFactory.Options opts = new BitmapFactory.Options();
