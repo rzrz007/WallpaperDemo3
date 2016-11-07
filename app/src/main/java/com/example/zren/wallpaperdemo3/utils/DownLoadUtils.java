@@ -57,13 +57,13 @@ public class DownLoadUtils {
      *
      * @param picPath
      */
-    public static void downLoadPic(String picPath) {
+    public static void downLoadPic(String picPath,String place) {
 
         InputStream inputStream = null;
         FileOutputStream fileOutputStream = null;
         String picName = picPath.substring(picPath.lastIndexOf("/"));
         try {
-            fileOutputStream = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + picName);
+            fileOutputStream = new FileOutputStream(Environment.getExternalStoragePublicDirectory(place) + File.separator + picName);
             URL url = new URL(picPath);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");

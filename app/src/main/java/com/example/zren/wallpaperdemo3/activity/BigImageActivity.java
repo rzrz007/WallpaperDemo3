@@ -157,7 +157,21 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
                 break;
             //收藏
             case R.id.button_bigimg_snackbar_collection:
-
+                final String path_son_coll = data.get(local_id - 1);
+                String single_pic_name_coll = path_son_coll.substring(path_son_coll.lastIndexOf("/"));
+                String single_pic_file_coll = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + File.separator + single_pic_name_coll;
+                File file_coll = new File(single_pic_file_coll);
+                if (!file_coll.exists()) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DownLoadUtils.downLoadPic(path_son_coll,Environment.DIRECTORY_DCIM);
+                        }
+                    }).start();
+                    Toast.makeText(this, "图片:" + single_pic_name_coll + "收藏成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    new AlertDialog.Builder(this).setTitle("提示：").setMessage("图片已收藏！").setPositiveButton("好的", null).show();
+                }
                 break;
             //设置为壁纸
             case R.id.button_bigimg_snackbar_setting:
@@ -192,7 +206,7 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            DownLoadUtils.downLoadPic(path_son);
+                            DownLoadUtils.downLoadPic(path_son,Environment.DIRECTORY_PICTURES);
                         }
                     }).start();
                     Toast.makeText(this, "图片:" + single_pic_name + "下载成功", Toast.LENGTH_SHORT).show();
