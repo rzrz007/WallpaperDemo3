@@ -35,10 +35,8 @@
         </activity>
         <activity android:name=".activity.IndexActivity" />
         <activity android:name=".activity.CategoryDetailActivity" />
-        <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.DownloadActivity" />
         <activity android:name=".activity.Download_sonPic_Activity" />
-        <activity android:name=".activity.CategoryDetailActivity"/>
         <activity android:name=".activity.BigImageActivity"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -71,6 +69,7 @@
         <activity android:name=".activity.Activity_SreachClick" />
         <activity android:name=".activity.Activity_SerachClick_detial" />
         <activity android:name=".activity.Activity_Serach_base"></activity>
+        <activity android:name=".activity.Activity_Serach_10sort"></activity>
     </application>
 
 </manifest>
