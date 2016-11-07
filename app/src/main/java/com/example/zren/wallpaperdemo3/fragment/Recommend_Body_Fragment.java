@@ -23,6 +23,7 @@ import com.example.zren.wallpaperdemo3.R;
 import com.example.zren.wallpaperdemo3.activity.BigImageActivity;
 import com.example.zren.wallpaperdemo3.common.Images;
 import com.example.zren.wallpaperdemo3.common.JsonUrl;
+import com.example.zren.wallpaperdemo3.domain.ImagePath;
 import com.example.zren.wallpaperdemo3.domain.Recommend_Images;
 import com.example.zren.wallpaperdemo3.utils.NetUtils;
 import com.google.gson.Gson;
@@ -44,6 +45,8 @@ public class Recommend_Body_Fragment extends Fragment {
     public String JsonString;
     private Recommend_Images recommend_images;
     private static WindowManager wm;
+    private String[] imgpath;
+
     public Recommend_Body_Fragment() {
         // Required empty public constructor
     }
@@ -56,19 +59,18 @@ public class Recommend_Body_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view=inflater.inflate(R.layout.fragment_recommend__body_, container, false);
+        final View view = inflater.inflate(R.layout.fragment_recommend__body_, container, false);
         wm = getActivity().getWindowManager();
 
         InitData(view);
 
 
-
-        xRefreshView= (XRefreshView) view.findViewById(R.id.xRefreshView);
+        xRefreshView = (XRefreshView) view.findViewById(R.id.xRefreshView);
         xRefreshView.setXRefreshViewListener(new XRefreshView.XRefreshViewListener() {
             @Override
             public void onRefresh() {
                 InitData(view);
-                adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
                 xRefreshView.stopRefresh();
             }
 
@@ -79,10 +81,9 @@ public class Recommend_Body_Fragment extends Fragment {
 
             @Override
             public void onRelease(float direction) {
-                System.out.println("===onRelease(float direction="+direction+")=====");
+                System.out.println("===onRelease(float direction=" + direction + ")=====");
             }
         });
-
 
 
         return view;
@@ -92,37 +93,47 @@ public class Recommend_Body_Fragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Path="+Path);
-                final InputStream inputStream= NetUtils.getInputStreamByGET(Path);
+                System.out.println("Path=" + Path);
+                final InputStream inputStream = NetUtils.getInputStreamByGET(Path);
                 try {
-                    JsonString=NetUtils.inputStreamToString(inputStream);
-                    System.out.println("JsonSting"+JsonString);
+                    JsonString = NetUtils.inputStreamToString(inputStream);
+                    System.out.println("JsonSting" + JsonString);
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             System.out.println("进入主线程");
-                            Gson gson=new Gson();
+                            Gson gson = new Gson();
 
-                            recommend_images=gson.fromJson(JsonString,Recommend_Images.class);
-                            Images.ImageList=new ArrayList<String>();
-                            for(int i=0;i<recommend_images.getData().getWallpaperListInfo().size();i++){
-                                Images.ImageList.add(recommend_images.getData().getWallpaperListInfo().get(i).getWallPaperMiddle());
+                            recommend_images = gson.fromJson(JsonString, Recommend_Images.class);
+                            Images.ImageList = new ArrayList<String>();
+                            for (int i = 0; i < recommend_images.getData().getWallpaperListInfo().size(); i++) {
+                                Images.ImageList.add(recommend_images.getData().getWallpaperListInfo().get(i).getWallPaperBig());
                             }
 
-                            recyclerView= (RecyclerView) view.findViewById(R.id.recyclerView);
-                            GridLayoutManager gridLayoutManager=new GridLayoutManager(getContext(),3);
+                            final ImagePath imagePath=new ImagePath();
+                            imagePath.setImagepath(Images.ImageList);
+
+                            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
                             recyclerView.setLayoutManager(gridLayoutManager);
-                            adapter=new MyAdapter(Images.ImageList);
+                            adapter = new MyAdapter(Images.ImageList);
                             //需要注意的是:RecyclerView 必须设置数据后才会下拉刷新,否则不下拉.ListView可以在下拉时在加载数据并显示.
                             recyclerView.setAdapter(adapter);
                             adapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener() {
                                 @Override
-                                public void onItemClick(View view, String data) {
-                                    Intent intent=new Intent(getContext(), BigImageActivity.class);
-                                    startActivity(intent);
-                                    System.out.println(view);
+                                public void onItemClick(View view, int data) {
                                     Toast.makeText(getActivity(), "点击了图片", Toast.LENGTH_SHORT).show();
+                                    System.out.println("data.toString()=" + data);
+                                    Intent intent = new Intent();
+                                    intent.setClass(getContext(), BigImageActivity.class);
+                                    intent.putExtra("data", data);
+                                    Bundle bundle=new Bundle();
+                                    bundle.putSerializable("path",imagePath);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+
+
                                 }
                             });
                         }
@@ -136,50 +147,53 @@ public class Recommend_Body_Fragment extends Fragment {
         }).start();
     }
 
-    private static final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener{
+
+    private static final class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
         private ViewGroup viewGroup;
         private List<String> ImageList;
 
         @Override
         public void onClick(View v) {
-            System.out.println("view="+v);
             if (mOnItemClickListener != null) {
                 //注意这里使用getTag方法获取数据
-                mOnItemClickListener.onItemClick(v,(String)v.getTag());
+                mOnItemClickListener.onItemClick(v, (Integer) v.getTag());
             }
         }
 
 
         public static interface OnRecyclerViewItemClickListener {
-            void onItemClick(View view , String data);
+            void onItemClick(View view, int data);
         }
+
         private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
         public MyAdapter(List<String> imageList) {
-            this.ImageList=imageList;
+            this.ImageList = imageList;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            
-            this.viewGroup=parent;
-            View view=View.inflate(parent.getContext(),R.layout.item,null);
-            ViewHolder viewHolder=new ViewHolder(view);
-            view.setOnClickListener(this);
+
+            this.viewGroup = parent;
+            View view = View.inflate(parent.getContext(), R.layout.item, null);
+            ViewHolder viewHolder = new ViewHolder(view);
+//            view.setOnClickListener(this);
             return viewHolder;
         }
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            
+
 
             int width = wm.getDefaultDisplay().getWidth();
             int height = wm.getDefaultDisplay().getHeight();
 
-            int img_width=width/3;
-            int img_height=img_width*2;
-            Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width,img_height-30).into(holder.imageView_img);
-            holder.imageView_img.setTag(ImageList.get(position));
+            int img_width = width / 3;
+            int img_height = img_width * 2;
+            System.out.println("ImageList.get(position)=" + ImageList.get(position));
+            Picasso.with(viewGroup.getContext()).load(ImageList.get(position)).resize(img_width, img_height - 30).placeholder(R.drawable.load_big).into(holder.imageView_img);
+            holder.imageView_img.setTag(position);
+            holder.imageView_img.setOnClickListener(this);
         }
 
 
@@ -190,9 +204,11 @@ public class Recommend_Body_Fragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView_img;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                imageView_img= (ImageView) itemView.findViewById(R.id.imageView_img);
+                imageView_img = (ImageView) itemView.findViewById(R.id.imageView_img);
+                imageView_img.setScaleType(ImageView.ScaleType.FIT_XY);
             }
         }
 

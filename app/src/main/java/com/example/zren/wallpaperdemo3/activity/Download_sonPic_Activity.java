@@ -22,8 +22,10 @@ public class Download_sonPic_Activity extends AppCompatActivity {
     private Button button_back;
     private Button button_detail;
     private Button button_setBackground;
-    private String imgPath;
-    private Bitmap bitmap;
+    private String imgPath1;
+    private String imgPath2;
+    private Bitmap bitmap1;
+    private Bitmap bitmap2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,21 @@ public class Download_sonPic_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         final Bundle bundle = intent.getExtras();
 
-        imgPath = bundle.getString("imgPath");
+        imgPath1 = bundle.getString("imgPath");
 
-        bitmap = BitmapFactory.decodeFile(imgPath);
-        imageView.setImageBitmap(bitmap);
+        imgPath2 = bundle.getString("picFile");
+
+        bitmap1 = BitmapFactory.decodeFile(imgPath1);
+
+        bitmap2 = BitmapFactory.decodeFile(imgPath2);
+
+        if (bitmap1 != null) {
+            imageView.setImageBitmap(bitmap1);
+        } else {
+            if (bitmap2 != null) {
+                imageView.setImageBitmap(bitmap2);
+            }
+        }
 
         //返回则销毁当前Activity
         button_back.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +68,11 @@ public class Download_sonPic_Activity extends AppCompatActivity {
         button_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(Download_sonPic_Activity.this).setTitle("图片详情").setMessage("路径：" + imgPath).setNegativeButton("确定", null).show();
+                if (imgPath1 == null) {
+                    imgPath1 = imgPath2;
+                }
+                new AlertDialog.Builder(Download_sonPic_Activity.this).setTitle("图片详情").setMessage("路径：" + imgPath1).setNegativeButton("确定", null).show();
+
             }
         });
 
@@ -63,7 +80,13 @@ public class Download_sonPic_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    setWallpaper(bitmap);
+                    if (bitmap1 != null) {
+                        setWallpaper(bitmap1);
+                    } else {
+                        if (bitmap2 != null) {
+                            setWallpaper(bitmap2);
+                        }
+                    }
                     Toast.makeText(Download_sonPic_Activity.this, "设置成功", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
