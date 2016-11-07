@@ -123,6 +123,15 @@ public class BigImageActivity extends AppCompatActivity implements View.OnClickL
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);//设置新建布局参数
         param.gravity = Gravity.CENTER_VERTICAL;//设置新建布局在Snackbar内垂直居中显示
         snackbarLayout.addView(add_view, 1, param);//将新建布局添加进snackbarLayout相应位置
+        Snackbar.SnackbarLayout snackbarLayout=(Snackbar.SnackbarLayout)snackbarview;//将获取的View转换成SnackbarLayout
+        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(R.layout.snackbar_big_img,null);//加载布局文件新建View
+        this.button_bigimg_snackbar_collection= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_collection);
+        this.button_bigimg_snackbar_setting= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_setting);
+        this.button_bigimg_snackbar_download= (Button) add_view.findViewById(R.id.button_bigimg_snackbar_download);
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);//设置新建布局参数
+        param.gravity= Gravity.CENTER_VERTICAL;//设置新建布局在Snackbar内垂直居中显示
+        snackbarLayout.addView(add_view,1,param);//将新建布局添加进snackbarLayout相应位置
+        snackbarLayout.setAlpha(Float.parseFloat("0.7"));
 
         //给popupWindow设置参数
         popupWindow.setTouchable(true);
